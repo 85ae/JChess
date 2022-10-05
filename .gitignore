@@ -1,0 +1,9 @@
+# Visual studio code
+.vscode/
+
+# Construction
+build/
+
+# Fichiers personnels
+TODO
+tools/
