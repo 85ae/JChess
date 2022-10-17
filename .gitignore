@@ -3,6 +3,8 @@
 
 # Construction
 build/
+Configure.class
+build.sh
 
 # Fichiers personnels
 TODO
