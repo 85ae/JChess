@@ -1,16 +1,17 @@
 package jchess.engine.pieces;
 
+import jchess.engine.board.Position;
 import jchess.engine.moves.Move;
-import jchess.engine.players.*;
+import jchess.engine.board.Player;
 
 // Bishop
 public class Bishop extends Piece {
-    public Bishop(Player player) {
-        super('b', player);
+    public Bishop(Player player, Position pos) {
+        super('b', player, pos);
     }
 
     public Bishop() {
-        this(new NullPlayer());
+        this(Player.none, new Position());
     }
 
     @Override

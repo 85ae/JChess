@@ -1,0 +1,88 @@
+package jchess.engine.chess;
+
+import jchess.engine.board.Player;
+import jchess.engine.board.Position;
+import jchess.engine.pieces.*;
+
+/** Represents a chess piece */
+public class ChessPiece {
+    private Piece piece;
+
+    /** The default constructor
+     * Creates a blank piece.
+     */
+    public ChessPiece() {
+        this(' ', "a1", ' ');
+    }
+
+    /** Main constructor
+     * @param piece The piece symbol ('k' for king, 'p' for pawn...).
+     * @param position The position of the piece.
+     * @param player The player ('w' or 'b', ' ' for none).
+     */
+    public ChessPiece(char piece, String position, char player) {
+        try {
+            this.piece = (Piece)Piece.piece(piece).getConstructor(Player.class, Position.class).
+                newInstance(player == 'w' ? Player.white : (player == 'b' ? Player.black : Player.none),
+                            new Position(position));
+        } catch (Exception exception) {
+            exception.printStackTrace();
+        }
+    }
+
+    /** Another constructor
+     * @param piece The piece.
+     */
+    ChessPiece(Piece piece) {
+        this.piece = piece;
+    }
+
+    /** Get the piece
+     * Only for internal classes - objects.
+     * @return The piece.
+     */
+    Piece getPiece() {
+        return piece;
+    }
+
+    /** Return the position
+     * @return The position.
+     */
+    public String getPosition() {
+        return piece.getPosition().toString();
+    }
+
+    /** Get the piece owner
+     * @return 'w' if white, 'b' if black and ' ' if null.
+     */
+    public char getOwner() {
+        if(piece.getPlayer() == Player.white) {
+            return 'w';
+        } else if(piece.getPlayer() == Player.black) {
+            return 'b';
+        } else {
+            return ' ';
+        }
+    }
+
+    /** Return a character that represents the piece
+     * like 'N' for a white knight or 'p' for a black pawn.
+     * @return The character. '.' for a null piece (blank case).
+     */
+    public char getSymbol() {
+        char symbol = piece.getSymbol();
+        if(getOwner() == 'w') {
+            return Character.toUpperCase(symbol);
+        } else {
+            return symbol;
+        }
+    }
+
+    /** Return a printable string.
+     * For example, it can be "Be4" for a white bishop situated in e4.
+     * @return A printable string.
+     */
+    public String toString() {
+        return Character.toString(getSymbol()) + piece.getPosition();
+    }
+}

@@ -17,11 +17,11 @@ public class ConfigFile {
 	public ConfigFile(String file) {
 		properties = new Properties();
 		this.file = new File(file);
-		if( ! this.file.exists() ) {
+		if(!this.file.exists()) {
 			try {
 				this.file.createNewFile();
-			} catch (Exception ex) {
-				ex.getStackTrace();
+			} catch (Exception exception) {
+				exception.getStackTrace();
 			}
 		}
 	}
@@ -32,8 +32,8 @@ public class ConfigFile {
 			FileInputStream input = new FileInputStream(file);
 			properties.load(input);
 			return properties.getProperty(key);
-		} catch(Exception ex) {
-			System.out.println(ex.getMessage());
+		} catch(Exception exception) {
+			System.out.println(exception.getMessage());
 			return "";
 		}
 	}
@@ -47,8 +47,8 @@ public class ConfigFile {
 			FileOutputStream output = new FileOutputStream(file);
 			properties.store(output, "");
 
-		} catch(Exception ex) {
-			System.out.println(ex.getMessage());
+		} catch(Exception exception) {
+			System.out.println(exception.getMessage());
 		}
 	}
 }

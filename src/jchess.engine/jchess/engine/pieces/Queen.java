@@ -1,16 +1,17 @@
 package jchess.engine.pieces;
 
+import jchess.engine.board.Position;
 import jchess.engine.moves.Move;
-import jchess.engine.players.*;
+import jchess.engine.board.Player;
 
 // Queen
 public class Queen extends Piece {
-    public Queen(Player player) {
-        super('q', player);
+    public Queen(Player player, Position pos) {
+        super('q', player, pos);
     }
 
     public Queen() {
-        this(new NullPlayer());
+        this(Player.none, new Position());
     }
 
     @Override

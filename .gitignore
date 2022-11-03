@@ -6,4 +6,5 @@ build/
 
 # Fichiers personnels
 TODO
+.todo_cfg
 perso/

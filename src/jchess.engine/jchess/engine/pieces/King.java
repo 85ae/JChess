@@ -1,16 +1,17 @@
 package jchess.engine.pieces;
 
+import jchess.engine.board.Position;
 import jchess.engine.moves.Move;
-import jchess.engine.players.*;
+import jchess.engine.board.Player;
 
 // King
 public class King extends Piece {
-    public King(Player player) {
-        super('k', player);
+    public King(Player player, Position pos) {
+        super('k', player, pos);
     }
 
     public King() {
-        this(new NullPlayer());
+        this(Player.none, new Position());
     }
 
     @Override

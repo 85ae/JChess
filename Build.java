@@ -2,6 +2,7 @@ import java.io.File;
 import java.io.PrintStream;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
+import java.util.Arrays;
 import javax.tools.Tool;
 import javax.tools.ToolProvider;
 
@@ -9,7 +10,6 @@ import javax.tools.ToolProvider;
  * Type `java Build.java [OPTIONS]` to build the program.
  * To see more help about the usage, type `java Build.java --help`.
  * @author 85ae
- * @since 0.0.1
  * @version 0.0.1
  */
 class Build {
@@ -37,6 +37,7 @@ class Build {
         }
         this.buildDir = "." + slash + "build";
         this.srcDir = "." + slash + "src";
+        this.prefix = "";
         this.debug = false;
         this.test = false;
         this.jchess_app = true;
@@ -55,6 +56,8 @@ class Build {
             modules = new String[] {"jchess.engine"};
         } else if(jchess_interface) {
             modules = new String[] {"jchess.interface"};
+        } else {
+            log(3, "The project won't be compiled because all the modules are disabled.");
         }
 
         // Call the right method
@@ -165,7 +168,7 @@ class Build {
         helpMessage += "\n";
         helpMessage += "Where OPTIONS can be:\n";
         helpMessage += "\t--help, -h\tPrint this help message.\n";
-        helpMessage += "\t--prefix PREFIX\tThe directory (`/usr` by default on Linux / Unix / Macos, `C:\\Program files` on Windows) where are placed the library files. DO NOT set the root on Windows (write `\\Program files` and not `C:\\Program files` for example).\n";
+        helpMessage += "\t--prefix PREFIX\tThe directory (`/usr` by default on Linux / Unix / Macos, `C:\\Program files\\JChess` on Windows) where are placed the library files. DO NOT set the root on Windows (write `\\Program files\\JChess` and not `C:\\Program files\\JChess` for example).\n";
         helpMessage += "\t--os OS\tMake the scripts for os `OS` (can be `unix` for a *nix or linux-based system, `macos` or `windows`).\n";
         helpMessage += "\t--test\tEnable testing (disabled by default).\n";
         helpMessage += "\t--debug\tEnable debugging (disabled by default).\n";
@@ -188,12 +191,21 @@ class Build {
         return javac.run(null, null, null, arguments) == 0;
     }
 
-    // Copy a file or a directory
-    private void copy(String inputFile, String outputFile) {
-        try {
-            Files.copy(new File(inputFile).toPath(), new File(outputFile).toPath(), StandardCopyOption.REPLACE_EXISTING, StandardCopyOption.COPY_ATTRIBUTES);
-        } catch(Exception exception) {
-            log(3, exception.getMessage());
+    /// Copy a file or a directory
+    private void copy(String input, String output) {
+        File inputFile = new File(input);
+        File outputFile = new File(output);
+        if(inputFile.isDirectory()) {
+            for(String file : inputFile.list()) {
+                copy(input + slash + file, output + slash + file);
+            }
+        } else {
+            try {
+                outputFile.mkdirs();
+                Files.copy(inputFile.toPath(), outputFile.toPath(), StandardCopyOption.REPLACE_EXISTING, StandardCopyOption.COPY_ATTRIBUTES);
+            } catch(Exception exception) {
+                log(3, exception.getMessage());
+            }
         }
     }
 
@@ -230,6 +242,7 @@ class Build {
                 output = "";
         }
         output += info;
+        output += "\u001B[00m";
         stream.println(output);
         if(level == 3) {
             System.exit(1);
@@ -257,7 +270,7 @@ class Build {
             log(5, "The build directory is " + buildDirectory.getAbsolutePath());
             log(3, "Build directory wasn't created. The build directory must can be created to compile correctly the files.");
         }
-        log(5, "These modules will be compiled : " + modules);
+        log(5, "These modules will be compiled : " + Arrays.deepToString(modules));
         // check for JDK > 8
         if(Integer.valueOf(System.getProperty("java.specification.version")) > 8) {
             log(2, "JRE > 8: yes");
@@ -295,7 +308,7 @@ class Build {
         }
         // install in the fakeroot directory
         for(String module : modules) {
-            copy(buildDir + slash + module, fakerootDir + prefix + slash + module);
+            copy(buildDir + slash + module, fakerootDir + prefix + slash + "bin" + slash + module);
             log(2, "Module " + module + " was copied in the fakeroot environment.");
         }
     }
@@ -327,13 +340,13 @@ class Build {
     // If os = "windows"
     private void windows() {
         if(prefix.isEmpty()) {
-            prefix = slash + "Program files";
+            prefix = slash + "Program files" + slash + "JChess";
         }
         build();
         log(1, "Post-install operations");
         //TODO: Add post-install commands
         log(1, "Tips");
-        //TODO: Display tips
+        log(-1, "You can type \n\tCopy-Item -Recurse -Path Path\\To\\JChess\\build\\fakeroot\\*\\* -Destination C:\\\nin an admin powershell.");
     }
 
     /// Main method

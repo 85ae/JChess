@@ -7,6 +7,7 @@ JChess is a chess application containing a chess engine, a chess interface and a
 JChess contains three modules:
  - `jchess.engine`: this is a chess engine. It includes many backend features and provides a simple API.
  - `jchess.interface`: _À venir_
+ - `jchess.interface`: _À venir_
 
 ## Modules
 
@@ -35,7 +36,7 @@ Where OPTIONS can be:
 Option              | Description
 --------------------|------------
 --help, -h          | Prints an help message.
---prefix PREFIX     | The directory (`/usr` by default on Linux / Unix / Macos, `C:\Program files` on Windows) where are placed the library files. DO NOT set the root on Windows (write `\Program files` and not `C:\Program files` for example).
+--prefix PREFIX     | The directory (`/usr` by default on Linux / Unix / Macos, `C:\Program files\JChess` on Windows) where are placed the library files. DO NOT set the root on Windows (write `\Program files\JChess` and not `C:\Program files\JChess` for example).
 --os OS             | Make the scripts for os `OS` (can be `unix` for a *nix or linux-based system, `macos` or `windows`).
 --test              | Enable testing (disabled by default).
 --debug             | Enable debugging (disabled by default).
