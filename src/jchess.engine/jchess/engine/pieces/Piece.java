@@ -1,52 +1,74 @@
-// This package defines the pieces
+/// This package defines the pieces.
 package jchess.engine.pieces;
 
 import jchess.engine.board.Position;
 import jchess.engine.board.Player;
 import jchess.engine.moves.Move;
 
-// This class is a generic piece.
+/** This class is a generic piece.
+ * You can't create a instance of this class, but all the methods defined here can be used in all the piece classes.
+ */
 public abstract class Piece {
 	protected char symbol;
 	protected Player player;
 	protected Position position;
 
-	/** Default Constructor */
+	/** Default Constructor.
+	 * Creates a null piece (blank case) at a1.
+	 */
 	Piece() {
 		this(new Position());
 	}
 
-	// Create a null piece
+	/** Creates a null piece (blank case).
+	 * @param position The case position.
+	 */
 	Piece(Position position) {
-		this('.', Player.none, position);
+		this('.', Player.NONE, position);
 	}
 
-	// Create a piece
+	/** Creates a piece.
+	 * @param symbol The piece symbol (k, n, p...).
+	 * @param player The owner (white, black or none).
+	 * @param position The position of the new piece.
+	 */
 	Piece(char symbol, Player player, Position position) {
 		this.symbol = symbol;
 		this.position = position;
 		setPlayer(player);
 	}
 
-	// Rules to move a piece
+	/** Verify the validity of a move.
+	 * @param move The move to verify.
+	 * @return True if this move is correct, false else.
+	 */
 	public abstract boolean canMove(Move move);
 
-	// Verify if is null - override to say yes
+	/** Verify if is null.
+	 * Override if it is.
+	 * @return True if it's a null piece (blank case), false else.
+	 */
 	public boolean isNull() {
 		return false;
 	}
 
-	// Get the symbol
+	/** Get the piece symbol.
+	 * @return The symbol of the piece.
+	 */
 	public char getSymbol() {
 		return symbol;
 	}
 
-	// Get the player
+	/** Get the player.
+	 * @return The player who has got this piece.
+	 */
 	public Player getPlayer() {
 		return player;
 	}
 
-	// Set the player
+	/** Set the player.
+	 * @param player The new owner of this piece.
+	 */
 	public void setPlayer(Player player) {
 		this.player = player;
 	}
@@ -65,7 +87,7 @@ public abstract class Piece {
 		position = pos;
 	}
 
-	/** Return a piece
+	/** Return a piece.
 	 * @param symbol The piece symbol.
 	 * @return A piece class.
 	 */

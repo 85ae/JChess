@@ -1,3 +1,6 @@
+/** Contains chess board classes.
+ * Such as board, player and position.
+ */
 package jchess.engine.board;
 
 import java.util.Arrays;
@@ -5,13 +8,18 @@ import jchess.engine.moves.Move;
 import jchess.engine.parser.MoveParser;
 import jchess.engine.pieces.*;
 
-// This class represent the chessboard
+/** This class represent a chessboard.
+ * It provides a lot of methods to manipulate a chess board.
+ */
 public class Board {
     private Piece[][] board;
     private Move[] history;
     private Player player;
 
-    // Construct the board
+    /** Default constructor.
+     * It creates a blank board (8/8/8/8/8/8/8/8) with white to play and a blank history.
+     * There's no other constructor.
+     */
     public Board() {
         board = new Piece[8][8];
         for(int i = 0; i < board.length; i++) {
@@ -21,48 +29,64 @@ public class Board {
             }
         }
         history = new Move[0];
-        player = Player.white;
+        player = Player.WHITE;
     }
 
-    // initialize the pieces
-    public void initialize() {
-        char[] row = { 'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r' };
-
-        for(int i = 0; i < row.length; i++) {
+    /** Initializes the board.
+     * This method initializes the board with a pawn line at the second and the seventh lines.
+     * The first and the last lines are initialized with the line given as argument.
+     * It can be used for random chess (Fischer's chess).
+     * @param row The first and last row, generally {'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r'}.
+     */
+    public void initialize(char[] row) {
+        for(int i = 0; i < row.length && i < board.length; i++) {
             try {
                 // first row
-                setPiece(new Position(i, 0), (Piece)Piece.piece(row[i]).getDeclaredConstructor(Player.class, Position.class).newInstance(Player.white, new Position(i, 0))); // setCase(i0, new Piece.piece(white, i0))
+                setPiece(new Position(i, 0), (Piece)Piece.piece(row[i]).getDeclaredConstructor(Player.class, Position.class).newInstance(Player.WHITE, new Position(i, 0))); // setCase(i0, new Piece.piece(white, i0))
                 // last row
-                setPiece(new Position(i, 7), (Piece)Piece.piece(row[i]).getDeclaredConstructor(Player.class, Position.class).newInstance(Player.black, new Position(i, 7))); // setCase(i7, new Piece.piece(black, i7))
+                setPiece(new Position(i, 7), (Piece)Piece.piece(row[i]).getDeclaredConstructor(Player.class, Position.class).newInstance(Player.BLACK, new Position(i, 7))); // setCase(i7, new Piece.piece(black, i7))
             } catch(Exception exception) {
                 exception.getStackTrace();
             }
             // row 2
-            setPiece(new Position(i, 1), new Pawn(Player.white, new Position(i, 1)));
+            setPiece(new Position(i, 1), new Pawn(Player.WHITE, new Position(i, 1)));
             // row 7
-            setPiece(new Position(i, 6), new Pawn(Player.black, new Position(i, 6)));
+            setPiece(new Position(i, 6), new Pawn(Player.BLACK, new Position(i, 6)));
         }
     }
 
-    // Get the case situated at pos
+    /** Initializes the board.
+     * This method initializes the chess board with the default layout (rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR).
+     */
+    public void initialize() {
+        initialize(new char[]{'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r'});
+    }
+
+    /** Returns the piece on the board.
+     * @param pos The piece position.
+     * @return A reference to this piece.
+     */
     public Piece getPiece(Position pos) {
         return board[pos.getRow()][pos.getColumn()];
     }
 
-    // Set the case situated at pos
+    /** Set the piece on the board.
+     * @param pos The piece position.
+     * @param piece A reference to the piece which will be assigned to this position.
+     */
     public void setPiece(Position pos, Piece piece) {
         board[pos.getRow()][pos.getColumn()] = piece;
         piece.setPos(pos);
     }
 
-    /** Get the history
+    /** Get the history.
      * @return The move history.
      */
     public Move[] getHistory() {
         return history;
     }
 
-    /** Get a move in the history
+    /** Get a move in the history.
      * @param index The index where is situated the move.
      * @return The move situated at `index`. Return null if an error occured.
      */
@@ -70,21 +94,21 @@ public class Board {
         return index < getHistory().length && index >= 0 ? getHistory()[index] : null;
     }
 
-    /** Get the first move
+    /** Get the first move.
      * @return The first move.
      */
     public Move getFirstMove() {
         return getMove(0);
     }
 
-    /** Get the last move
+    /** Get the last move.
      * @return The last move.
      */
     public Move getLastMove() {
         return getMove(getHistory().length - 1);
     }
 
-    /** Modify a move
+    /** Modify a move.
      * @param index The index of the move in the history.
      * @param value A move to replace the old move.
      */
@@ -94,16 +118,18 @@ public class Board {
         }
     }
 
-    /** Append a move
-     * @param move The move to add
+    /** Append a move.
+     * @param move The move to add.
      */
     private void addMove(Move move) {
         history = Arrays.copyOf(history, history.length + 1);
-        setMove(getHistory().length, move);
-        Arrays.
+        setMove(getHistory().length - 1, move);
     }
 
-    /** Undo the last move */
+    /** Undo the last move.
+     * If the history is empty, it doesn't do anything.
+     * Else, it undos the last move and resizes the history.
+     */
     public void undo() {
         if(getHistory().length < 1) return;
 
@@ -120,7 +146,19 @@ public class Board {
         history = tempHistory;
     }
 
-    // Return the chessboard string
+    /** Returns the chess board string.
+     * It returns a string like this :
+     * 8 r n b q k b n r
+     * 7 p p p p . p p p
+     * 6 . . . . . . . .
+     * 5 . . . . p . . .
+     * 4 . . . . P . . .
+     * 3 . . . . . N . .
+     * 2 P P P P . P P P
+     * 1 R N B Q K B . R
+     *   a b c d e f g h
+     * @return A representation of this chess board.
+     */
     @Override
     public String toString() {
         String output = "  a b c d e f g h\n\n";
@@ -129,7 +167,7 @@ public class Board {
             for(int j = 0; j < board.length; j++) {
                 Position pos = new Position(j, i);
 
-                line += (getPiece(pos).getPlayer() == Player.white ? /* to upper case */ getPiece(pos).toString().toUpperCase() : getPiece(pos));
+                line += (getPiece(pos).getPlayer() == Player.WHITE ? /* to upper case */ getPiece(pos).toString().toUpperCase() : getPiece(pos));
                 line += ' ';
             }
             output = line + '\n' + output;
@@ -148,14 +186,23 @@ public class Board {
         history = new Move[0];
     }
 
-    /** Move a piece
+    /** Move a piece.
      * @param parser A move parser (jchess.engine.parser.MoveParser) already parsed.
      */
     public void move(MoveParser parser) {
         move((Move)parser.get());
     }
 
-    /** Move a piece
+    /** Move (a) piece(s).
+     * @param parsers (A) move parser(s) (jchess.engine.parser.MoveParser) already parsed.
+     */
+    public void move(MoveParser... parsers) {
+        for(MoveParser parser : parsers) {
+            move(parser);
+        }
+    }
+
+    /** Move a piece.
      * @param oldPos The old position of the piece.
      * @param newPos The new position of the piece.
      */
@@ -165,7 +212,7 @@ public class Board {
         
     }
 
-    /** Move a piece
+    /** Move a piece.
      * @param move The move to do.
      */
     public void move(Move move) {
@@ -179,12 +226,21 @@ public class Board {
         }
     }
 
+    /** Move (a) piece(s).
+     * @param moves The move(s) to do.
+     */
+    public void move(Move... moves) {
+        for(Move move : moves) {
+            move(move);
+        }
+    }
+
     /** Change the player to play */
     public void changePlayer() {
-        if(player == Player.white) {
-            player = Player.black;
-        } else { // player == Player.black
-            player = Player.white;
+        if(player == Player.WHITE) {
+            player = Player.BLACK;
+        } else { // player == Player.BLACK
+            player = Player.WHITE;
         }
     }
 
@@ -195,7 +251,7 @@ public class Board {
         return player;
     }
 
-    /** Find the piece that can move on a case
+    /** Finds the piece that can move on a case.
      * @param type The type of the piece (for example: king, pawn...). Must be a symbol (k for king, n for knight, p for pawn...).
      * @param target The target position.
      * @param white Ask if it's a white piece or not. True if it's a white piece, false else.
@@ -220,7 +276,7 @@ public class Board {
         return null;
     }
 
-    /** Find the piece that can move on a case
+    /** Finds the piece that can move on a case.
      * @param type The type of the piece (for example: king, pawn...). Must be a symbol (k for king, n for knight, p for pawn...).
      * @param target The target position.
      * @param white Ask if it's a white piece or not. True if it's a white piece, false else.
@@ -244,7 +300,7 @@ public class Board {
         return piece;
     }
 
-    /** Find the piece that can move on a case
+    /** Finds the piece that can move on a case.
      * @param type The type of the piece (for example: king, pawn...). Must be a symbol (k for king, n for knight, p for pawn...).
      * @param target The target position.
      * @param white Ask if it's a white piece or not. True if it's a white piece, false else.

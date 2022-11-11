@@ -1,4 +1,4 @@
-// This package is used to create, read and access config files.
+/// This package is used to create, read and access config files.
 package config;
 
 import java.io.File;
@@ -6,7 +6,9 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.util.Properties;
 
-// The class ConfigFile open a configuration file and can read it.
+/** This class opens a configuration file.
+ * It can read or modify configuration files.
+ */
 public class ConfigFile {
 	private File file;
 	private Properties properties;

@@ -4,18 +4,18 @@ import jchess.engine.board.Player;
 import jchess.engine.board.Position;
 import jchess.engine.pieces.*;
 
-/** Represents a chess piece */
+/** Represents a chess piece. */
 public class ChessPiece {
     private Piece piece;
 
-    /** The default constructor
-     * Creates a blank piece.
+    /** The default constructor.
+     * Creates a blank piece at a1.
      */
     public ChessPiece() {
         this(' ', "a1", ' ');
     }
 
-    /** Main constructor
+    /** Main constructor.
      * @param piece The piece symbol ('k' for king, 'p' for pawn...).
      * @param position The position of the piece.
      * @param player The player ('w' or 'b', ' ' for none).
@@ -23,21 +23,21 @@ public class ChessPiece {
     public ChessPiece(char piece, String position, char player) {
         try {
             this.piece = (Piece)Piece.piece(piece).getConstructor(Player.class, Position.class).
-                newInstance(player == 'w' ? Player.white : (player == 'b' ? Player.black : Player.none),
+                newInstance(player == 'w' ? Player.WHITE : (player == 'b' ? Player.BLACK : Player.NONE),
                             new Position(position));
         } catch (Exception exception) {
             exception.printStackTrace();
         }
     }
 
-    /** Another constructor
+    /** Another constructor.
      * @param piece The piece.
      */
     ChessPiece(Piece piece) {
         this.piece = piece;
     }
 
-    /** Get the piece
+    /** Get the piece.
      * Only for internal classes - objects.
      * @return The piece.
      */
@@ -45,28 +45,28 @@ public class ChessPiece {
         return piece;
     }
 
-    /** Return the position
-     * @return The position.
+    /** Return the position.
+     * @return The position (like "e4").
      */
     public String getPosition() {
         return piece.getPosition().toString();
     }
 
-    /** Get the piece owner
+    /** Get the piece owner.
      * @return 'w' if white, 'b' if black and ' ' if null.
      */
     public char getOwner() {
-        if(piece.getPlayer() == Player.white) {
+        if(piece.getPlayer() == Player.WHITE) {
             return 'w';
-        } else if(piece.getPlayer() == Player.black) {
+        } else if(piece.getPlayer() == Player.BLACK) {
             return 'b';
         } else {
             return ' ';
         }
     }
 
-    /** Return a character that represents the piece
-     * like 'N' for a white knight or 'p' for a black pawn.
+    /** Return a character that represents the piece.
+     * It can be 'N' for a white knight or 'p' for a black pawn.
      * @return The character. '.' for a null piece (blank case).
      */
     public char getSymbol() {
@@ -83,6 +83,6 @@ public class ChessPiece {
      * @return A printable string.
      */
     public String toString() {
-        return Character.toString(getSymbol()) + piece.getPosition();
+        return Character.toString(getSymbol()) + getPosition();
     }
 }

@@ -5,6 +5,9 @@ import jchess.engine.board.Position;
 import jchess.engine.moves.Move;
 import jchess.engine.pieces.Piece;
 
+/** A class to parse a move.
+ * You can use it to move a piece from a player input.
+ */
 public class MoveParser implements Parser {
     private String content;
     private Move move;
@@ -21,6 +24,7 @@ public class MoveParser implements Parser {
         isWhitePlayer = white;
     }
 
+    @Override
     public Parser parse(String... input) {
         content = "";
         for(String i : input) {
@@ -105,6 +109,7 @@ public class MoveParser implements Parser {
     /** Return the parsed move
      * @return The move.
      */
+    @Override
     public Object get() {
         return move;
     }

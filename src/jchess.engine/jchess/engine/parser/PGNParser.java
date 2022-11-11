@@ -16,6 +16,7 @@ public class PGNParser implements Parser {
         this.board = board;
     }
 
+    @Override
     public Parser parse(String... input) {
         for(String i : input) {
             content += i;
@@ -50,6 +51,7 @@ public class PGNParser implements Parser {
         return parser.parse(input);
     }
 
+    @Override
     /** Return the parsed board
      * @return The board.
      */

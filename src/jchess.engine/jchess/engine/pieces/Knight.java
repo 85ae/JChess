@@ -4,14 +4,21 @@ import jchess.engine.board.Position;
 import jchess.engine.moves.Move;
 import jchess.engine.board.Player;
 
-// Knight
+/** The knight. */
 public class Knight extends Piece {
+    /** Creates a new knight.
+     * @param player The owner.
+     * @param pos The position of the knight.
+     */
     public Knight(Player player, Position pos) {
         super('n', player, pos);
     }
 
+    /** Creates a new knight.
+     * It hasn't got any owner and it's in a1.
+     */
     public Knight() {
-        this(Player.none, new Position());
+        this(Player.NONE, new Position());
     }
 
     @Override

@@ -1,12 +1,11 @@
+/** This package contains some parsers (move, PGN, FEN...). */
 package jchess.engine.parser;
 
 /** This interface is used to define a parser
  * It's used, for example, to create a PGN parser.
- * @author 85ae
- * @version 0.0.1
  */
 public interface Parser {
-    /** Parses (a) string(s)
+    /** Parses (a) string(s).
      * @param input The string(s) to parse.
      * @return A parser object, normally 'this'.
      */
@@ -21,8 +20,8 @@ public interface Parser {
         return parser.parse(input);
     }
 
-    /** Get the parsed object
-     * @return The parsed object
+    /** Get the parsed object.
+     * @return The parsed object.
      */
     public Object get();
 }

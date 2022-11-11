@@ -1,11 +1,13 @@
 package jchess.engine.board;
 
-// Represents a position
+/** Represents a position.
+ * It can also parse a string
+ */
 public class Position {
     private int row;
     private int column;
 
-    /** A constructor
+    /** A constructor.
      * @param y The column ('a', 'b'..., 'h')
      * @param x The row (1, 2..., 8)
      */
@@ -13,7 +15,7 @@ public class Position {
         this(y - 'a', x - 1);
     }
 
-    /** A constructor
+    /** A constructor.
      * @param y The column ('a', 'b'..., 'h')
      * @param x The row (1, 2..., 8)
      */
@@ -21,7 +23,7 @@ public class Position {
         this(y, (int) x);
     }
 
-    /** A constructor
+    /** A constructor.
      * @param y The column (0, 1..., 7)
      * @param x The row (0, 1..., 7)
      */
@@ -36,7 +38,7 @@ public class Position {
         }
     }
 
-    /** A constructor
+    /** A constructor.
      * @param y The column (0, 1..., 7)
      * @param x The row (0, 1..., 7)
      */
@@ -44,7 +46,8 @@ public class Position {
         this((int) y, (int) x);
     }
 
-    /** This constructor parses a string like "e4"
+    /** This constructor parses a string.
+     * For example, "e4".
      * @param pos The position to parse.
      */
     public Position(String pos) {
@@ -56,18 +59,22 @@ public class Position {
         }
     }
 
-    /// Default constructor
+    /** Default constructor.
+     * The default position is a1.
+     */
     public Position() {
         this('a', 1);
     }
 
-    // Get the row
+    /** Get the row.
+     * @return The row (0, 1...).
+     */
     public int getRow() {
         return row;
     }
 
-    /** Set the row
-     * @param x The new value
+    /** Set the row.
+     * @param x The new value (0 for 1...).
      */
     public void setRow(int x) {
         if(x < 8 && x >= 0) {
@@ -75,13 +82,15 @@ public class Position {
         }
     }
 
-    // Get the column
+    /** Get the column.
+     * @return The column (0 for a, 1 for b...).
+     */
     public int getColumn() {
         return column;
     }
 
-    /** Set the column
-     * @param x The new value
+    /** Set the column.
+     * @param x The new value (0 for a...).
      */
     public void setColumn(int x) {
         if(x < 8 && x >= 0) {
@@ -89,8 +98,8 @@ public class Position {
         }
     }
 
-    /** Set the column
-     * @param x The new value
+    /** Set the column.
+     * @param x The new value.
      */
     public void setColumn(char x) {
         if(x - 'a' < 8 && x - 'a' >= 0) {
@@ -98,28 +107,32 @@ public class Position {
         }
     }
 
-    // Increment the row by i
+    /** Increments the row.
+     * @param i The increment number.
+     */
     public void incrementRow(int i) {
         setRow(row + i);
     }
 
-    // Increment the column by i
+    /** Increments the column by i
+     * @param i The increment number.
+     */
     public void incrementColumn(int i) {
         setColumn(column + i);
     }
 
-    // Increment the row
+    /** Increments the row. */
     public void incrementRow() {
         incrementRow(1);
     }
 
-    // Increment the column
+    /** Increments the column. */
     public void incrementColumn() {
         incrementColumn(1);
     }
 
-    /** Return a string to represent a move
-     * @return A string that can be displayed.
+    /** Return a string to represent a move.
+     * @return A string that can be displayed. For example, "e4".
      */
     @Override
     public String toString() {

@@ -3,10 +3,11 @@ package jchess.engine.chess;
 import jchess.engine.board.*;
 import jchess.engine.parser.MoveParser;
 
+/** This class represents a chess board. */
 public class ChessBoard {
     private Board board;
 
-    /** The default constructor
+    /** The default constructor.
      * Initialize the board with the default board (rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR).
      */
     public ChessBoard() {
@@ -14,7 +15,7 @@ public class ChessBoard {
         board.initialize();
     }
 
-    /** Get a piece
+    /** Get a piece.
      * @param position The postion where the piece is.
      * @return The piece situated here.
      */
@@ -22,26 +23,26 @@ public class ChessBoard {
         return new ChessPiece(board.getPiece(new Position(position)));
     }
 
-    /** Get the player who plays
+    /** Get the player who plays.
      * @return 'w' for white or 'b' for black.
      */
     public char getPlayer() {
-        return board.getPlayer() == Player.white ? 'w' : 'b';
+        return board.getPlayer() == Player.WHITE ? 'w' : 'b';
     }
 
-    /** Move a piece if possible
+    /** Move a piece if possible.
      * @param move The move to do.
      */
     public void move(String move) {
         board.move((MoveParser)new MoveParser(board, getPlayer() == 'w').parse(move));
     }
 
-    /** Undo the last move */
+    /** Undo the last move. */
     public void undo() {
         board.undo();
     }
 
-    /** Return the history
+    /** Return the history.
      * @return The history.
      */
     public String[] getHistory() {
@@ -52,7 +53,7 @@ public class ChessBoard {
         return moves;
     }
 
-    /** Return a representation of the board
+    /** Return a representation of the board.
      * @return A printable string.
      */
     @Override
