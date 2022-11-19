@@ -92,33 +92,20 @@ public abstract class Piece {
 	 * @return A piece class.
 	 */
 	public static Class<?> piece(char symbol) {
-		switch(symbol) {
-			case 'K':
-			case 'k':
-				return King.class;
+		return switch(symbol) {
+			case 'K', 'k' -> King.class;
 
-			case 'Q':
-			case 'q':
-				return Queen.class;
+			case 'Q', 'q' -> Queen.class;
 
-			case 'B':
-			case 'b':
-				return Bishop.class;
+			case 'B', 'b' -> Bishop.class;
 
-			case 'N':
-			case 'n':
-				return Knight.class;
+			case 'N', 'n' -> Knight.class;
 
-			case 'R':
-			case 'r':
-				return Rook.class;
+			case 'R', 'r' -> Rook.class;
 
-			case 'P':
-			case 'p':
-				return Pawn.class;
+			case 'P', 'p' -> Pawn.class;
 
-			default:
-				return NullPiece.class;
+			default -> NullPiece.class;
 		}
 	}
 

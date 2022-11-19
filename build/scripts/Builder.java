@@ -51,10 +51,10 @@ public class Builder {
         }
         if(options.debug) Log.log(Log.DEBUG, "These modules will be compiled : " + Arrays.deepToString(options.modules));
         // check for JDK > 8
-        if(Integer.valueOf(System.getProperty("java.specification.version")) > 8) {
-            Log.log(Log.LITLE, "JRE > 8: yes");
+        if(Integer.valueOf(System.getProperty("java.specification.version")) >= 14) {
+            Log.log(Log.LITLE, "JRE >= 14: yes");
         } else {
-            Log.log(Log.FATALERROR, "JRE version lower than 9");
+            Log.log(Log.FATALERROR, "JRE version lower than 14");
         }
         // compiling
         Log.log(Log.BIG, "Compilation");

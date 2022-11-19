@@ -20,32 +20,21 @@ public enum Log {
      * @param info The text to display.
      */
     public static void log(Log level, String info) {
-        String output;
         PrintStream stream = System.out;
-        switch(level) {
-            case TITLE: // title
-                output = "\u001B[01;04m"; // bold underlined
-                break;
-            case BIG: // big info
-                output = "\n\u001B[01;35m==> \u001B[00;35m";
-                break;
-            case LITLE: // litle info
-                output = "\u001B[01;36m -> \u001B[00;36m";
-                break;
-            case ERROR: // error
-            case FATALERROR:
-                output = "\u001B[01;31mERROR: \u001B[00;31m";
+        String output = switch(level) {
+            case TITLE -> "\u001B[01;04m"; // bold underlined
+            case BIG -> "\n\u001B[01;35m==> \u001B[00;35m";
+            case LITLE -> "\u001B[01;36m -> \u001B[00;36m";
+            case ERROR, FATALERROR -> {
                 stream = System.err;
-                break;
-            case WARNING: // warning
-                output = "\u001B[03;33mWarning: \u001B[00;33m";
+                yield "\u001B[01;31mERROR: \u001B[00;31m";
+            }
+            case WARNING -> {
                 stream = System.err;
-                break;
-            case DEBUG: // debug
-                output = "\u001B[02;32m[debug] \u001B[00;32m";
-                break;
-            default: // just an information
-                output = "";
+                yield "\u001B[03;33mWarning: \u001B[00;33m";
+            }
+            case DEBUG -> "\u001B[02;32m[debug] \u001B[00;32m";
+            default -> ""; // just an information
         }
         output += info;
         output += "\u001B[00m";

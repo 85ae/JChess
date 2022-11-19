@@ -4,16 +4,16 @@ Usage: java Build.java [OPTIONS]
 
 Where OPTIONS can be:
 
-Option              | Description
---------------------|------------
---help, -h          | Prints this  help message then exit.
---prefix PREFIX     | The directory (`/usr` by default on Linux / Unix / Macos, `C:\Program files\JChess` on Windows) where are placed the library files. DO NOT set the root on Windows (write `\Program files\JChess` and not `C:\Program files\JChess` for example).
---os OS             | Make the scripts for os `OS` (can be `unix` for a *nix or linux-based system, `macos` or `windows`).
---test              | Enable testing (disabled by default).
---debug             | Enable debugging (disabled by default).
---clean             | Delete the build directories (`build/build_*`).
---build-dir DIR     | Build in the directory `DIR` instead of `./build`.
---src-dir DIR       | Search the sources in the directory `DIR` instead of `./src`.
---no-app            | Disable the `jchess.app` module.
---no-engine         | Disable the `jchess.engine` and `jchess.app` modules.
---no-interface      | Disable the `jchess.interface` and `jchess.app` modules.
+Option                Description
+------                -----------
+--help, -h            Prints this  help message then exit.
+--prefix PREFIX       The directory (`/usr` by default on Linux / Unix / Macos, `C:\Program files\JChess` on Windows) where are placed the library files. DO NOT set the root on Windows (write `\Program files\JChess` and not `C:\Program files\JChess` for example).
+--os OS               Make the scripts for os `OS` (can be `unix` for a *nix or linux-based system, `macos` or `windows`).
+--test                Enable testing (disabled by default).
+--debug               Enable debugging (disabled by default).
+--clean               Delete the build directories (`build/build_*`) then exit.
+--build-dir DIR       Build in the directory `DIR` instead of `./build`.
+--src-dir DIR         Search the sources in the directory `DIR` instead of `./src`.
+--no-app              Disable the `jchess.app` module.
+--no-engine           Disable the `jchess.engine` and `jchess.app` modules.
+--no-interface        Disable the `jchess.interface` and `jchess.app` modules.

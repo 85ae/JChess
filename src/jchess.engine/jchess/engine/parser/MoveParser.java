@@ -42,48 +42,25 @@ public class MoveParser implements Parser {
         for(int i = 0; i < content.length(); i++) {
             char x = content.charAt(i);
             switch(x) {
-                case 'K':
-                case 'Q':
-                case 'B':
-                case 'N':
-                case 'R':
-                    piece = x;
-                    break;
+                case 'K', 'Q', 'B', 'N', 'R' -> piece = x;
 
-                case 'a':
-                case 'b':
-                case 'c':
-                case 'd':
-                case 'e':
-                case 'f':
-                case 'g':
-                case 'h':
+                case 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h' -> {
                     if(newColumn != '\u0000') {
                         oldColumn = newColumn;
                     }
                     newColumn = x;
-                    break;
+                }
 
-                case '1':
-                case '2':
-                case '3':
-                case '4':
-                case '5':
-                case '6':
-                case '7':
-                case '8':
+                case '1', '2', '3', '4', '5', '6', '7', '8' -> {
                     if(newRow != 0) {
                         oldRow = newRow;
                     }
                     newRow = (int)x - ('1' - 1);
-                    break;
+                }
 
-                case 'x':
-                    capture = true;
-                    break;
+                case 'x' -> capture = true;
 
-                default:
-                    System.err.println("'" + x + "' isn't a valid character in a move definition");
+                default -> System.err.println("'" + x + "' isn't a valid character in a move definition");
             }
         }
 
