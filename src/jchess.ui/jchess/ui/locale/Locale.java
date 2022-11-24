@@ -8,9 +8,9 @@ public interface Locale {
     /**
      * This method returns a text.<br/>
      * You may use the {@link java.util.Properties} class to parse a file.
-     * The keys that are generally sent to this method are under the form "jchess.<em>info.needed</em>".
+     * The keys that are generally sent to this method are under the form "jchess.<em>info.asked</em>".
      * @param key the key to search.
-     * @return The asked text, used to display something for example.
+     * @return the asked text, used to display something for example.
      */
     public String get(String key);
 }
