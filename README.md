@@ -7,8 +7,8 @@ JChess is a chess application containing a chess engine, a chess interface and a
 JChess contains three modules:
 
 - `jchess.engine`: this is a chess engine. It includes many backend features and provides a simple API.
-- `jchess.interface`: _À venir_
-- `jchess.interface`: _À venir_
+- `jchess.ui`: _À venir_
+- `jchess.app`: _À venir_
 
 ## Modules
 
@@ -49,6 +49,6 @@ Option              | Description
 --src-dir DIR       | Search the sources in the directory `DIR` instead of `./src`.
 --no-app            | Disable the `jchess.app` module.
 --no-engine         | Disable the `jchess.engine` and `jchess.app` modules.
---no-interface      | Disable the `jchess.interface` and `jchess.app` modules.
+--no-ui             | Disable the `jchess.ui` and `jchess.app` modules.
 
 The program will show more instructions about what you'll need to do after this.

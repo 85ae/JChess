@@ -16,4 +16,4 @@ Option                Description
 --src-dir DIR         Search the sources in the directory `DIR` instead of `./src`.
 --no-app              Disable the `jchess.app` module.
 --no-engine           Disable the `jchess.engine` and `jchess.app` modules.
---no-interface        Disable the `jchess.interface` and `jchess.app` modules.
+--no-ui               Disable the `jchess.ui` and `jchess.app` modules.

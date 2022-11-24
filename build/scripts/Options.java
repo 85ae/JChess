@@ -8,7 +8,7 @@ import java.util.Date;
 
 public class Options {
     String prefix, os, buildDir, srcDir;
-    boolean test, debug, jchess_app, jchess_engine, jchess_interface;
+    boolean test, debug, jchess_app, jchess_engine, jchess_ui;
     String[] modules;
 
     /** Contructor. */
@@ -31,21 +31,21 @@ public class Options {
         test = false;
         jchess_app = true;
         jchess_engine = true;
-        jchess_interface = true;
+        jchess_ui = true;
 
         // Modify the properties
         testArguments(args);
         
         if(jchess_engine) {
-            if(jchess_interface) {
+            if(jchess_ui) {
                 if(jchess_app) {
-                    modules = new String[] {"jchess.engine", "jchess.interface", "jchess.app"};
+                    modules = new String[] {"jchess.engine", "jchess.ui", "jchess.app"};
                 }
-                modules = new String[] {"jchess.engine", "jchess.interface"};
+                modules = new String[] {"jchess.engine", "jchess.ui"};
             }
             modules = new String[] {"jchess.engine"};
-        } else if(jchess_interface) {
-            modules = new String[] {"jchess.interface"};
+        } else if(jchess_ui) {
+            modules = new String[] {"jchess.ui"};
         } else {
             Log.log(Log.FATALERROR, "The project won't be compiled because all the modules are disabled.");
         }
@@ -118,8 +118,8 @@ public class Options {
                     jchess_app = false;
                 }
 
-                case "--no-interface" -> {
-                    jchess_interface = false;
+                case "--no-ui" -> {
+                    jchess_ui = false;
                     jchess_app = false;
                 }
 
