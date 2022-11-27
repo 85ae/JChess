@@ -1,4 +1,4 @@
-package jchess.ui.console.pieces;
+package jchess.ui.pieces;
 
 import jchess.ui.locale.Locale;
 
