@@ -106,7 +106,7 @@ public abstract class Piece {
 			case 'P', 'p' -> Pawn.class;
 
 			default -> NullPiece.class;
-		}
+		};
 	}
 
 	/** Return a printable string

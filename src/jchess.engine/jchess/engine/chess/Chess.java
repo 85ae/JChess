@@ -1,10 +1,12 @@
-/** A chess engine.
+/**
+ * A chess engine.
  * This package is the API.
  */
 package jchess.engine.chess;
 
 
-/** The main API class.
+/**
+ * The main API class.
  * It represents a chess game.
  */
 public class Chess {
@@ -15,14 +17,16 @@ public class Chess {
         board = new ChessBoard();
     }
 
-    /** Get the chess board.
+    /**
+     * Get the chess board.
      * @return The board.
      */
     public ChessBoard getBoard() {
         return board;
     }
 
-    /** Get player who plays.
+    /**
+     * Get player who plays.
      * @return This player. 'w' for white or 'b' for black.
      */
     public char getPlayer() {
@@ -34,27 +38,29 @@ public class Chess {
         board.undo();
     }
 
-    /** Makes a move.
+    /**
+     * Makes a move.
      * @param move The move to do.
      */
     public void move(String move) {
         board.move(move);
     }
 
-    /** Return a string that you can use to display.
-     * It may be, for example : <br>
-     * 8 r n b q k b n r <br>
-     * 7 p p p p . p p p <br>
-     * 6 . . . . . . . . <br>
-     * 5 . . . . p . . . <br>
-     * 4 . . . . P . . . <br>
-     * 3 . . . . . N . . <br>
-     * 2 P P P P . P P P <br>
-     * 1 R N B Q K B . R <br>
-     *   a b c d e f g h <br>
+    /**
+     * Return a string that you can use to display.
+     * It may be, for example : <br/>
+     * 8 r n b q k b n r <br//>
+     * 7 p p p p . p p p <br/>
+     * 6 . . . . . . . . <br/>
+     * 5 . . . . p . . . <br/>
+     * 4 . . . . P . . . <br/>
+     * 3 . . . . . N . . <br/>
+     * 2 P P P P . P P P <br/>
+     * 1 R N B Q K B . R <br/>
+     *   a b c d e f g h <br/>
      * <br>
-     * Last move was Ng1-f3.<br>
-     * Black to play.<br>
+     * Last move was Ng1-f3.<br/>
+     * Black to play.<br/>
      * @return A printable string.
      */
     @Override

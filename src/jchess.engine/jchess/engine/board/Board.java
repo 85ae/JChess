@@ -8,7 +8,8 @@ import jchess.engine.moves.Move;
 import jchess.engine.parser.MoveParser;
 import jchess.engine.pieces.*;
 
-/** This class represent a chessboard.
+/**
+ * This class represent a chessboard.
  * It provides a lot of methods to manipulate a chess board.
  */
 public class Board {
@@ -16,7 +17,8 @@ public class Board {
     private Move[] history;
     private Player player;
 
-    /** Default constructor.
+    /**
+     * Default constructor.
      * It creates a blank board (8/8/8/8/8/8/8/8) with white to play and a blank history.
      * There's no other constructor.
      */
@@ -32,7 +34,8 @@ public class Board {
         player = Player.WHITE;
     }
 
-    /** Initializes the board.
+    /**
+     * Initializes the board.
      * This method initializes the board with a pawn line at the second and the seventh lines.
      * The first and the last lines are initialized with the line given as argument.
      * It can be used for random chess (Fischer's chess).
@@ -55,14 +58,16 @@ public class Board {
         }
     }
 
-    /** Initializes the board.
+    /**
+     * Initializes the board.
      * This method initializes the chess board with the default layout (rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR).
      */
     public void initialize() {
         initialize(new char[]{'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r'});
     }
 
-    /** Returns the piece on the board.
+    /**
+     * Returns the piece on the board.
      * @param pos The piece position.
      * @return A reference to this piece.
      */
@@ -70,7 +75,8 @@ public class Board {
         return board[pos.getRow()][pos.getColumn()];
     }
 
-    /** Set the piece on the board.
+    /**
+     * Set the piece on the board.
      * @param pos The piece position.
      * @param piece A reference to the piece which will be assigned to this position.
      */
@@ -79,14 +85,16 @@ public class Board {
         piece.setPos(pos);
     }
 
-    /** Get the history.
+    /**
+     * Get the history.
      * @return The move history.
      */
     public Move[] getHistory() {
         return history;
     }
 
-    /** Get a move in the history.
+    /**
+     * Get a move in the history.
      * @param index The index where is situated the move.
      * @return The move situated at `index`. Return null if an error occured.
      */
@@ -94,21 +102,24 @@ public class Board {
         return index < getHistory().length && index >= 0 ? getHistory()[index] : null;
     }
 
-    /** Get the first move.
+    /**
+     * Get the first move.
      * @return The first move.
      */
     public Move getFirstMove() {
         return getMove(0);
     }
 
-    /** Get the last move.
+    /**
+     * Get the last move.
      * @return The last move.
      */
     public Move getLastMove() {
         return getMove(getHistory().length - 1);
     }
 
-    /** Modify a move.
+    /**
+     * Modify a move.
      * @param index The index of the move in the history.
      * @param value A move to replace the old move.
      */
@@ -118,7 +129,8 @@ public class Board {
         }
     }
 
-    /** Append a move.
+    /**
+     * Append a move.
      * @param move The move to add.
      */
     private void addMove(Move move) {
@@ -126,7 +138,8 @@ public class Board {
         setMove(getHistory().length - 1, move);
     }
 
-    /** Undo the last move.
+    /**
+     * Undo the last move.
      * If the history is empty, it doesn't do anything.
      * Else, it undos the last move and resizes the history.
      */
@@ -146,7 +159,8 @@ public class Board {
         history = tempHistory;
     }
 
-    /** Returns the chess board string.
+    /**
+     * Returns the chess board string.
      * It returns a string like this :
      * 8 r n b q k b n r
      * 7 p p p p . p p p
