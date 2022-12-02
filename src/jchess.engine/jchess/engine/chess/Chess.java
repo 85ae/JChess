@@ -1,7 +1,3 @@
-/**
- * A chess engine.
- * This package is the API.
- */
 package jchess.engine.chess;
 
 

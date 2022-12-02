@@ -15,7 +15,8 @@ public enum Log {
     DEBUG,
     SAMPLE;
 
-    /** Prints an information.
+    /**
+     * Prints an information.
      * @param level The log level.
      * @param info The text to display.
      */
@@ -35,7 +36,7 @@ public enum Log {
             }
             case DEBUG -> "\u001B[02;32m[debug] \u001B[00;32m";
             default -> ""; // just an information
-        }
+        };
         output += info;
         output += "\u001B[00m";
         stream.println(output);

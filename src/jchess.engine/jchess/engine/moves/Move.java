@@ -30,7 +30,7 @@ public class Move {
      * @return True if it's a correct move, false else.
      */
     public boolean isCorrect() {
-        if(!oldPos.equals(newPos) && getPiecePlayer(newPos).isPlayer()) {
+        if(!oldPos.equals(newPos) && !verify().getPiecePlayer(newPos).isPlayer() && getPiecePlayer() == board.getPlayer()) {
             return getPiece().canMove(this);
         } else {
             return false;

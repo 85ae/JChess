@@ -204,7 +204,7 @@ public class Board {
      * @param parser A move parser (jchess.engine.parser.MoveParser) already parsed.
      */
     public void move(MoveParser parser) {
-        move((Move)parser.get());
+        move(parser.get());
     }
 
     /** Move (a) piece(s).

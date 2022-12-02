@@ -5,7 +5,8 @@ import jchess.engine.board.Position;
 import jchess.engine.moves.Move;
 import jchess.engine.pieces.Piece;
 
-/** A class to parse a move.
+/**
+ * A class to parse a move.
  * You can use it to move a piece from a player input.
  */
 public class MoveParser implements Parser {
@@ -14,7 +15,8 @@ public class MoveParser implements Parser {
     private boolean isWhitePlayer;
     private Board board;
 
-    /** The constructor.
+    /**
+     * The constructor.
      * @param board The chessboard.
      * @param white True if the owner of the piece is white, false else.
      */
@@ -25,7 +27,7 @@ public class MoveParser implements Parser {
     }
 
     @Override
-    public Parser parse(String... input) {
+    public MoveParser parse(String... input) {
         content = "";
         for(String i : input) {
             content += i;
@@ -78,6 +80,11 @@ public class MoveParser implements Parser {
             pieceToMove = board.whoCanDoIt(piece, target, isWhitePlayer);
         }
 
+        if(pieceToMove == null) {
+            System.err.println("Error: The piece is undefined");
+            System.exit(1);
+        }
+
         move = new Move(pieceToMove.getPosition(), target, board);
 
         return this;
@@ -87,7 +94,7 @@ public class MoveParser implements Parser {
      * @return The move.
      */
     @Override
-    public Object get() {
+    public Move get() {
         return move;
     }
 }
