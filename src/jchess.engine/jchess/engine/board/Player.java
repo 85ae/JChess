@@ -21,4 +21,16 @@ public enum Player {
     public boolean isPlayer() {
         return !isNull();
     }
+
+    /** Check if the other player is the opposite.<br/>
+     * If this player or the other is null or "none" it will return false.
+     * @param other the other player.
+     * @return true if it's the opposite player.
+     */
+    public boolean isOpposite(Player other) {
+        if(this.isNull() || other == null || other.isNull() || other.equals(this)) {
+            return false;
+        }
+        return true;
+    }
 }

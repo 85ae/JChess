@@ -14,6 +14,3 @@ Option                Description
 --clean               Delete the build directories (`build/build_*`) then exit.
 --build-dir DIR       Build in the directory `DIR` instead of `./build`.
 --src-dir DIR         Search the sources in the directory `DIR` instead of `./src`.
---no-app              Disable the `jchess.app` module.
---no-engine           Disable the `jchess.engine` and `jchess.app` modules.
---no-ui               Disable the `jchess.ui` and `jchess.app` modules.

@@ -7,9 +7,8 @@ import java.util.Arrays;
 import java.util.Date;
 
 public class Options {
-    String prefix, os, buildDir, srcDir;
-    boolean test, debug, jchess_app, jchess_engine, jchess_ui;
-    String[] modules;
+    String prefix, os, buildDir, srcDir, module;
+    boolean test, debug;
 
     /** Contructor. */
     public Options(String[] args) {
@@ -27,28 +26,12 @@ public class Options {
         buildDir = "build" + FileManager.slash() + "build_" + new SimpleDateFormat("dd-MM-yyyy_HH-mm-ss").format(new Date());
         srcDir = "src";
         prefix = "";
+        module = "jchess.engine";
         debug = false;
         test = false;
-        jchess_app = true;
-        jchess_engine = true;
-        jchess_ui = true;
 
         // Modify the properties
         testArguments(args);
-        
-        if(jchess_engine) {
-            if(jchess_ui) {
-                if(jchess_app) {
-                    modules = new String[] {"jchess.engine", "jchess.ui", "jchess.app"};
-                }
-                modules = new String[] {"jchess.engine", "jchess.ui"};
-            }
-            modules = new String[] {"jchess.engine"};
-        } else if(jchess_ui) {
-            modules = new String[] {"jchess.ui"};
-        } else {
-            Log.log(Log.FATALERROR, "The project won't be compiled because all the modules are disabled.");
-        }
     }
 
     /** Test arguments
@@ -112,18 +95,6 @@ public class Options {
                     }
                     srcDir = args[i];
                 }
-
-                case "--no-engine" -> {
-                    jchess_engine = false;
-                    jchess_app = false;
-                }
-
-                case "--no-ui" -> {
-                    jchess_ui = false;
-                    jchess_app = false;
-                }
-
-                case "--no-app" -> jchess_app = false;
 
                 case "-h", "--help" -> Log.help(); // prints the help then exit
 

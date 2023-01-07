@@ -5,6 +5,7 @@ package jchess.engine.board;
 
 import java.util.Arrays;
 import jchess.engine.moves.Move;
+import jchess.engine.moves.Take;
 import jchess.engine.parser.MoveParser;
 import jchess.engine.pieces.*;
 
@@ -230,7 +231,7 @@ public class Board {
      * @param move The move to do.
      */
     public void move(Move move) {
-        if(move.isCorrect() && move.getPiecePlayer() == player) {
+        if(move.isCorrect()) {
             setPiece(move.getNewPosition(), move.getPiece());
             setPiece(move.getOldPosition(), new NullPiece());
             addMove(move);
@@ -290,6 +291,31 @@ public class Board {
         return null;
     }
 
+    /** Finds the piece that can take another piece.
+     * @param type The type of the piece (for example: king, pawn...). Must be a symbol (k for king, n for knight, p for pawn...).
+     * @param target The target position.
+     * @param white Ask if it's a white piece or not. True if it's a white piece, false else.
+     * @return The piece that can do this move. Null if there's no piece that can do it.
+     */
+    public Piece whoCanTakeIt(char type, Position target, boolean white) {
+        Position pos = new Position();
+
+        do {
+            do {
+                if(getPiece(pos).getClass() == Piece.piece(type)) {
+                    if(new Take(pos, target, this).isCorrect()) {
+                        return getPiece(pos);
+                    }
+                }
+                pos.incrementColumn();
+            } while(pos.getColumn() < 7);
+            pos.setColumn('a');
+            pos.incrementRow();
+        } while(pos.getRow() < 7);
+
+        return null;
+    }
+
     /** Finds the piece that can move on a case.
      * @param type The type of the piece (for example: king, pawn...). Must be a symbol (k for king, n for knight, p for pawn...).
      * @param target The target position.
@@ -314,6 +340,30 @@ public class Board {
         return piece;
     }
 
+    /** Finds the piece that can take another piece.
+     * @param type The type of the piece (for example: king, pawn...). Must be a symbol (k for king, n for knight, p for pawn...).
+     * @param target The target position.
+     * @param white Ask if it's a white piece or not. True if it's a white piece, false else.
+     * @param column The column where is situated the piece.
+     * @return The piece that can do this move. Null if there's no piece that can do it.
+     */
+    public Piece whoCanTakeIt(char type, Position target, boolean white, char column) {
+        Position pos = new Position(column, 1);
+        Piece piece = null;
+
+        do {
+            if(getPiece(pos).getClass() == Piece.piece(type)) {
+                if(new Take(pos, target, this).isCorrect()) {
+                    piece = getPiece(pos);
+                    break;
+                }
+            }
+            pos.incrementRow();
+        } while(pos.getRow() < 7);
+
+        return piece;
+    }
+
     /** Finds the piece that can move on a case.
      * @param type The type of the piece (for example: king, pawn...). Must be a symbol (k for king, n for knight, p for pawn...).
      * @param target The target position.
@@ -328,6 +378,30 @@ public class Board {
         do {
             if(getPiece(pos).getClass() == Piece.piece(type)) {
                 if(new Move(pos, target, this).isCorrect()) {
+                    piece = getPiece(pos);
+                    break;
+                }
+            }
+            pos.incrementColumn();
+        } while(pos.getColumn() < 7);
+
+        return piece;
+    }
+
+    /** Finds the piece that can take another piece.
+     * @param type The type of the piece (for example: king, pawn...). Must be a symbol (k for king, n for knight, p for pawn...).
+     * @param target The target position.
+     * @param white Ask if it's a white piece or not. True if it's a white piece, false else.
+     * @param row The row where is situated the piece.
+     * @return The piece that can do this move. Null if there's no piece that can do it.
+     */
+    public Piece whoCanTakeIt(char type, Position target, boolean white, int row) {
+        Position pos = new Position('a', row);
+        Piece piece = null;
+
+        do {
+            if(getPiece(pos).getClass() == Piece.piece(type)) {
+                if(new Take(pos, target, this).isCorrect()) {
                     piece = getPiece(pos);
                     break;
                 }

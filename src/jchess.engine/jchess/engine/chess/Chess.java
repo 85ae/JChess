@@ -38,8 +38,8 @@ public class Chess {
      * Makes a move.
      * @param move The move to do.
      */
-    public void move(String move) {
-        board.move(move);
+    public void move(String... moves) {
+        board.move(moves);
     }
 
     /**

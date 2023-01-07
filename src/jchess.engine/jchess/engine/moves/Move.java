@@ -30,7 +30,7 @@ public class Move {
      * @return True if it's a correct move, false else.
      */
     public boolean isCorrect() {
-        if(!oldPos.equals(newPos) && !verify().getPiecePlayer(newPos).isPlayer() && getPiecePlayer() == board.getPlayer()) {
+        if(!oldPos.equals(newPos) && /* don't take */ verify().getPiecePlayer(newPos).isNull() && getPiecePlayer() == board.getPlayer()) {
             return getPiece().canMove(this);
         } else {
             return false;
@@ -74,7 +74,7 @@ public class Move {
     }
 
     /** Get the owner of the piece situated at the position pos.
-     * @deprecated This method is not longer used here. Use verify.getPiecePlayer(Position) instead.
+     * @deprecated This method is not longer used here. Use <em>verify().getPiecePlayer(Position)</em> instead.
      */
     @Deprecated
     public Player getPiecePlayer(Position pos) {

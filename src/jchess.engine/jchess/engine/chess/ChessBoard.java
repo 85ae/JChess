@@ -30,11 +30,15 @@ public class ChessBoard {
         return board.getPlayer() == Player.WHITE ? 'w' : 'b';
     }
 
-    /** Move a piece if possible.
-     * @param move The move to do.
+    /** Move (a) piece(s) if possible.
+     * @param moves The move(s) to do.
      */
-    public void move(String move) {
-        board.move((MoveParser)new MoveParser(board, getPlayer() == 'w').parse(move));
+    public void move(String... moves) {
+        MoveParser[] parsers = new MoveParser[moves.length];
+        for(int i = 0; i < moves.length; i++) {
+            parsers[i] = (MoveParser)new MoveParser(board, getPlayer() == 'w').parse(moves[i]);
+        }
+        board.move(parsers);
     }
 
     /** Undo the last move. */

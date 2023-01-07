@@ -2,7 +2,7 @@ package jchess.engine.parser;
 
 import jchess.engine.board.Board;
 import jchess.engine.board.Position;
-import jchess.engine.moves.Move;
+import jchess.engine.moves.*;
 import jchess.engine.pieces.Piece;
 
 /**
@@ -33,7 +33,7 @@ public class MoveParser implements Parser {
             content += i;
         }
 
-        boolean capture;
+        boolean capture = false;
         char oldColumn = '\u0000';
         int oldRow = 0;
         char newColumn = '\u0000';
@@ -69,15 +69,27 @@ public class MoveParser implements Parser {
         Position target = new Position(newColumn, newRow);
 
         if(oldColumn != '\u0000') {
-            if(oldRow != 0) {
-                pieceToMove = board.getPiece(new Position(newColumn, newRow));
-            } else {
-                pieceToMove = board.whoCanDoIt(piece, target, isWhitePlayer, newColumn);
+            if(oldRow != 0) { // known position
+                    pieceToMove = board.getPiece(new Position(newColumn, newRow));
+            } else { // known column
+                if(!capture) {
+                    pieceToMove = board.whoCanDoIt(piece, target, isWhitePlayer, newColumn);
+                } else {
+                    pieceToMove = board.whoCanTakeIt(piece, target, isWhitePlayer, newColumn);
+                }
             }
-        } else if(oldRow != 0) {
-            pieceToMove = board.whoCanDoIt(piece, target, isWhitePlayer, newRow);
-        } else {
-            pieceToMove = board.whoCanDoIt(piece, target, isWhitePlayer);
+        } else if(oldRow != 0) { // known row
+            if(!capture) {
+                pieceToMove = board.whoCanDoIt(piece, target, isWhitePlayer, newRow);
+            } else {
+                pieceToMove = board.whoCanTakeIt(piece, target, isWhitePlayer, newRow);
+            }
+        } else { // unknown position
+            if(!capture) {
+                pieceToMove = board.whoCanDoIt(piece, target, isWhitePlayer);
+            } else {
+                pieceToMove = board.whoCanTakeIt(piece, target, isWhitePlayer);
+            }
         }
 
         if(pieceToMove == null) {
@@ -85,7 +97,11 @@ public class MoveParser implements Parser {
             System.exit(1);
         }
 
-        move = new Move(pieceToMove.getPosition(), target, board);
+        if(!capture) {
+            move = new Move(pieceToMove.getPosition(), target, board);
+        } else {
+            move = new Take(pieceToMove.getPosition(), target, board);
+        }
 
         return this;
     }

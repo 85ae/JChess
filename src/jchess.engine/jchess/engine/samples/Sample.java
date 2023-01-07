@@ -20,7 +20,7 @@ public class Sample {
 
         // Make some moves.
         chess.move("e4");
-        System.out.println("Now it's " + /* Get the player's name ('b' or 'w'). */ chess.getPlayer() + " to play.");
+        System.out.println("Now it's " + /* Get the player's name ('b' or 'w'). */ chess.getPlayer() + " to play.\n");
         chess.move("e5");
         chess.move("Nf3");
 
@@ -29,6 +29,10 @@ public class Sample {
         // Undo a move.
         chess.undo();
         System.out.println("Now it's " + /* Get the player's name ('b' or 'w'). */ chess.getPlayer() + " to play.");
+
+        System.out.println(chess);
+
+        chess.move("f4", "xf4");
 
         System.out.println(chess);
     }

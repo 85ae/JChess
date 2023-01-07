@@ -1,20 +1,12 @@
 # JChess
 
-JChess is a chess application containing a chess engine, a chess interface and a command-line tool to use them.
+JChess is a chess engine.
 
 ## Presentation
 
-JChess contains three modules:
+JChess contains one module:
 
-- `jchess.engine`: this is a chess engine. It includes many backend features and provides a simple API.
-- `jchess.ui`: _À venir_
-- `jchess.app`: _À venir_
-
-## Modules
-
-### jchess.engine
-
-This is the chess engine.
+ > `jchess.engine`: this is a chess engine. It includes many backend features and provides a simple API.
 
 ## Dependencies
 
@@ -47,8 +39,5 @@ Option              | Description
 --clean             | Delete the build directories (`build/build_*`) then exit.
 --build-dir DIR     | Build in the directory `DIR` instead of `./build`.
 --src-dir DIR       | Search the sources in the directory `DIR` instead of `./src`.
---no-app            | Disable the `jchess.app` module.
---no-engine         | Disable the `jchess.engine` and `jchess.app` modules.
---no-ui             | Disable the `jchess.ui` and `jchess.app` modules.
 
 The program will show more instructions about what you'll need to do after this.

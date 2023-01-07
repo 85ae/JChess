@@ -7,7 +7,7 @@ public class Builder {
         Options options = new Options(args);
         FileManager filer = new FileManager(options.srcDir, options.buildDir, options.buildDir + FileManager.slash() + "fakeroot");
 
-        // I don't add an 'if options.prefix.isEmpty' condition because it verify that's a correct os
+        // I don't add an 'if options.prefix.isEmpty' condition now because it verify that's a correct os. so I add it later
         switch(options.os) {
             case "unix":
                 if(options.prefix.isEmpty()) {
@@ -49,7 +49,6 @@ public class Builder {
             if(options.debug) Log.log(Log.DEBUG, "The build directory is " + filer.getBuildDir().getAbsolutePath());
             Log.log(Log.FATALERROR, "Build directory wasn't created. The build directory must can be created to compile correctly the files.");
         }
-        if(options.debug) Log.log(Log.DEBUG, "These modules will be compiled : " + Arrays.deepToString(options.modules));
         // check for JDK > 8
         if(Integer.valueOf(System.getProperty("java.specification.version")) >= 14) {
             Log.log(Log.LITLE, "JRE >= 14: yes");
@@ -59,22 +58,21 @@ public class Builder {
         // compiling
         Log.log(Log.BIG, "Compilation");
         // compile the files
-        for(String module : options.modules) {
-            boolean result;
-            String[] arguments = new String[]{"--module-source-path", filer.getSourceDir().getAbsolutePath(), "-d", filer.getBuildDir().getAbsolutePath(), "--module", module};
-            if(options.debug) {
-                String[] finalArguments = Arrays.copyOf(arguments, arguments.length + 2);
-                finalArguments[finalArguments.length - 2] = "--debug";
-                finalArguments[finalArguments.length - 1] = "--verbose";
-                result = Compilation.compile(finalArguments);
-            } else {
-                result = Compilation.compile(arguments);
-            }
-            if(result) {
-                Log.log(Log.LITLE, "Module " + module + " compiled.");
-            } else {
-                Log.log(Log.ERROR, "Module " + module + " wasn't compiled. Some errors occured.");
-            }
+        String module = options.module;
+        boolean result;
+        String[] arguments = new String[]{"--module-source-path", filer.getSourceDir().getAbsolutePath(), "-d", filer.getBuildDir().getAbsolutePath(), "--module", module};
+        if(options.debug) {
+            String[] finalArguments = Arrays.copyOf(arguments, arguments.length + 2);
+            finalArguments[finalArguments.length - 2] = "--debug";
+            finalArguments[finalArguments.length - 1] = "--verbose";
+            result = Compilation.compile(finalArguments);
+        } else {
+            result = Compilation.compile(arguments);
+        }
+        if(result) {
+            Log.log(Log.LITLE, "Module " + module + " compiled.");
+        } else {
+            Log.log(Log.ERROR, "Module " + module + " wasn't compiled. Some errors occured.");
         }
         Log.log(Log.LITLE, "All the modules were compiled.");
         // post-build commands
@@ -89,10 +87,8 @@ public class Builder {
             Log.log(Log.FATALERROR, "Fakeroot directory wasn't created. The fakeroot directory must can be created to install correctly the files.");
         }
         // install in the fakeroot directory
-        for(String module : options.modules) {
-            FileManager.copy(filer.getBuildDir().getAbsolutePath() + FileManager.slash() + module, filer.getFakerootDir().getAbsolutePath() + options.prefix + FileManager.slash() + "lib" + FileManager.slash() + module);
-            Log.log(Log.LITLE, "Module " + module + " was copied in the fakeroot environment.");
-        }
+        FileManager.copy(filer.getBuildDir().getAbsolutePath() + FileManager.slash() + module, filer.getFakerootDir().getAbsolutePath() + options.prefix + FileManager.slash() + "lib" + FileManager.slash() + module);
+        Log.log(Log.LITLE, "Module " + module + " was copied in the fakeroot environment.");
 
         // Post-install operations
         Log.log(Log.BIG, "Post-install operations");
