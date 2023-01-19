@@ -8,7 +8,7 @@ import java.util.Date;
 
 public class Options {
     String prefix, os, buildDir, srcDir, module;
-    boolean test, debug;
+    boolean test, debug, compile;
 
     /** Contructor. */
     public Options(String[] args) {
@@ -29,6 +29,7 @@ public class Options {
         module = "jchess.engine";
         debug = false;
         test = false;
+        compile = true;
 
         // Modify the properties
         testArguments(args);
@@ -53,7 +54,7 @@ public class Options {
                     });
                     FileManager.delete(buildDirectories);
                     Log.log(Log.LITLE, "Build directories cleaned.");
-                    System.exit(0);
+                    compile = false;
                 }
 
                 case "--prefix" -> {
