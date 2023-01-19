@@ -4,6 +4,7 @@ package jchess.engine.pieces;
 import jchess.engine.board.Position;
 import jchess.engine.board.Player;
 import jchess.engine.moves.Move;
+import jchess.engine.moves.Take;
 
 /** This class is a generic piece.
  * You can't create a instance of this class, but all the methods defined here can be used in all the piece classes.
@@ -43,6 +44,12 @@ public abstract class Piece {
 	 * @return True if this move is correct, false else.
 	 */
 	public abstract boolean canMove(Move move);
+
+	/** Verify the validity of a taking move.
+	 * @param move The move to verify.
+	 * @return True if this move is correct, false else.
+	 */
+	public abstract boolean canTake(Take move);
 
 	/** Verify if is null.
 	 * Override if it is.

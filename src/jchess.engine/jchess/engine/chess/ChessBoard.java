@@ -1,5 +1,8 @@
 package jchess.engine.chess;
 
+import java.util.Arrays;
+import java.util.Collections;
+
 import jchess.engine.board.*;
 import jchess.engine.parser.MoveParser;
 
@@ -7,7 +10,7 @@ import jchess.engine.parser.MoveParser;
 public class ChessBoard {
     private Board board;
 
-    /** The default constructor.
+    /** The default constructor.<br/>
      * Initialize the board with the default board (rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR).
      */
     public ChessBoard() {
@@ -34,11 +37,9 @@ public class ChessBoard {
      * @param moves The move(s) to do.
      */
     public void move(String... moves) {
-        MoveParser[] parsers = new MoveParser[moves.length];
-        for(int i = 0; i < moves.length; i++) {
-            parsers[i] = (MoveParser)new MoveParser(board, getPlayer() == 'w').parse(moves[i]);
+        for(String move : moves) {
+            board.move(new MoveParser(board, getPlayer() == 'w').parse(move));
         }
-        board.move(parsers);
     }
 
     /** Undo the last move. */

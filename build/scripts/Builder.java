@@ -93,24 +93,29 @@ public class Builder {
         // Post-install operations
         Log.log(Log.BIG, "Post-install operations");
 
+        // installation
         switch(options.os) {
-            case "unix":
+            case "unix" -> {
                 Log.log(Log.BIG, "Tips");
-                Log.log(Log.SAMPLE, "You can type \n\tcp -r " + filer.getFakerootDir().getAbsolutePath() + "/* /\nas root.");
-                break;
+                Log.log(Log.SIMPLE, "You can type \n\tcp -r " + filer.getFakerootDir().getAbsolutePath() + "/* /\nas root.");
+            }
 
-            case "macos":
+            case "macos" -> {
                 Log.log(Log.BIG, "Tips");
-                Log.log(Log.SAMPLE, "You can type \n\tcp -r " + filer.getFakerootDir().getAbsolutePath() + "/* /\nas root.");
-                break;
+                Log.log(Log.SIMPLE, "You can type \n\tcp -r " + filer.getFakerootDir().getAbsolutePath() + "/* /\nas root.");
+            }
 
-            case "windows":
+            case "windows" -> {
                 Log.log(Log.BIG, "Tips");
-                Log.log(Log.SAMPLE, "You can type \n\tCopy-Item -Recurse -Path " + filer.getFakerootDir().getAbsolutePath() + "\\*\\* -Destination C:\\\nin an admin powershell.");
-                break;
+                Log.log(Log.SIMPLE, "You can type \n\tCopy-Item -Recurse -Path " + filer.getFakerootDir().getAbsolutePath() + "\\*\\* -Destination C:\\\nin an admin powershell.");
+            }
 
-            default:
-                Log.log(Log.FATALERROR, "Bad os " + options.os + ".");
+            default -> Log.log(Log.ERROR, "Bad os " + options.os + ".");
+        }
+
+        // launching example (debug only)
+        if(options.debug) {
+            Log.log(Log.DEBUG, "To launch, type:\njava -p " + filer.getBuildDir() + " -m jchess.engine/jchess.engine.examples.Example");
         }
     }
 }

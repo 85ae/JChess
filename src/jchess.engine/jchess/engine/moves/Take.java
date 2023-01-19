@@ -21,9 +21,14 @@ public class Take extends Move {
      */
     public boolean isCorrect() {
         if(!oldPos.equals(newPos) && /* take other player */ verify().getPiecePlayer(newPos).isOpposite(getPiecePlayer()) && getPiecePlayer() == board.getPlayer()) {
-            return getPiece().canMove(this);
+            return getPiece().canTake(this);
         } else {
             return false;
         }
+    }
+
+    @Override
+    public String toString() {
+        return super.toString().replace('-', 'x');
     }
 }

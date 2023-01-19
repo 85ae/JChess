@@ -1,5 +1,5 @@
 /**
  * This package contains a sample of what you can do.
- * @see Sample
+ * @see Example
  */
-package jchess.engine.samples;
+package jchess.engine.examples;

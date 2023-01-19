@@ -1,4 +1,4 @@
-package jchess.engine.samples;
+package jchess.engine.examples;
 
 import jchess.engine.chess.Chess;
 
@@ -6,7 +6,7 @@ import jchess.engine.chess.Chess;
  * A sample program.
  * Just to show what you can do and how.
  */
-public class Sample {
+public class Example {
     /**
      * The main method.
      * @param args The arguments passed to the program.
@@ -21,8 +21,7 @@ public class Sample {
         // Make some moves.
         chess.move("e4");
         System.out.println("Now it's " + /* Get the player's name ('b' or 'w'). */ chess.getPlayer() + " to play.\n");
-        chess.move("e5");
-        chess.move("Nf3");
+        chess.move("e5", "Nf3");
 
         System.out.println(chess);
 

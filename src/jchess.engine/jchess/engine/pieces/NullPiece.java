@@ -2,6 +2,7 @@ package jchess.engine.pieces;
 
 import jchess.engine.board.Position;
 import jchess.engine.moves.Move;
+import jchess.engine.moves.Take;
 
 /** Null piece.
  * It's used to represent a blank case.
@@ -29,5 +30,10 @@ public class NullPiece extends Piece {
     @Override
     public boolean isNull() {
         return true;
+    }
+
+    @Override
+    public boolean canTake(Take move) {
+        return false;
     }
 }

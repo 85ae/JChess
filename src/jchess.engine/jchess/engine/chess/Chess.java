@@ -45,7 +45,7 @@ public class Chess {
     /**
      * Return a string that you can use to display.
      * It may be, for example : <br/>
-     * 8 r n b q k b n r <br//>
+     * 8 r n b q k b n r <br/>
      * 7 p p p p . p p p <br/>
      * 6 . . . . . . . . <br/>
      * 5 . . . . p . . . <br/>

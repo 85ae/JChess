@@ -161,16 +161,16 @@ public class Board {
     }
 
     /**
-     * Returns the chess board string.
-     * It returns a string like this :
-     * 8 r n b q k b n r
-     * 7 p p p p . p p p
-     * 6 . . . . . . . .
-     * 5 . . . . p . . .
-     * 4 . . . . P . . .
-     * 3 . . . . . N . .
-     * 2 P P P P . P P P
-     * 1 R N B Q K B . R
+     * Returns the chess board string.<br/>
+     * It returns a string like this :<br/>
+     * 8 r n b q k b n r<br/>
+     * 7 p p p p . p p p<br/>
+     * 6 . . . . . . . .<br/>
+     * 5 . . . . p . . .<br/>
+     * 4 . . . . P . . .<br/>
+     * 3 . . . . . N . .<br/>
+     * 2 P P P P . P P P<br/>
+     * 1 R N B Q K B . R<br/>
      *   a b c d e f g h
      * @return A representation of this chess board.
      */
@@ -208,15 +208,6 @@ public class Board {
         move(parser.get());
     }
 
-    /** Move (a) piece(s).
-     * @param parsers (A) move parser(s) (jchess.engine.parser.MoveParser) already parsed.
-     */
-    public void move(MoveParser... parsers) {
-        for(MoveParser parser : parsers) {
-            move(parser);
-        }
-    }
-
     /** Move a piece.
      * @param oldPos The old position of the piece.
      * @param newPos The new position of the piece.
@@ -231,6 +222,7 @@ public class Board {
      * @param move The move to do.
      */
     public void move(Move move) {
+        System.out.println(move);
         if(move.isCorrect()) {
             setPiece(move.getNewPosition(), move.getPiece());
             setPiece(move.getOldPosition(), new NullPiece());
@@ -238,15 +230,6 @@ public class Board {
             changePlayer();
         } else {
             System.err.println("ERROR: This piece can't move to this position.");
-        }
-    }
-
-    /** Move (a) piece(s).
-     * @param moves The move(s) to do.
-     */
-    public void move(Move... moves) {
-        for(Move move : moves) {
-            move(move);
         }
     }
 

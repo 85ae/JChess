@@ -62,6 +62,8 @@ public class MoveParser implements Parser {
 
                 case 'x' -> capture = true;
 
+                case '-' -> capture = false;
+
                 default -> System.err.println("'" + x + "' isn't a valid character in a move definition");
             }
         }

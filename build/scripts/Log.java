@@ -13,7 +13,7 @@ public enum Log {
     FATALERROR,
     WARNING,
     DEBUG,
-    SAMPLE;
+    SIMPLE;
 
     /**
      * Prints an information.

@@ -4,8 +4,11 @@ package jchess.engine.board;
  * Can be white, black or none (a null player).
  */
 public enum Player {
+    /** A white player */
     WHITE,
+    /** A black player */
     BLACK,
+    /** A null player */
     NONE;
 
     /** Returns if a player is null.

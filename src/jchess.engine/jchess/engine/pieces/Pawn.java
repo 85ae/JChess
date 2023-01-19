@@ -2,6 +2,7 @@ package jchess.engine.pieces;
 
 import jchess.engine.board.Position;
 import jchess.engine.moves.Move;
+import jchess.engine.moves.Take;
 import jchess.engine.board.Player;
 
 /** The pawn. */
@@ -24,11 +25,24 @@ public class Pawn extends Piece {
     @Override
     public boolean canMove(Move move) {
         if(move.isVerticalLine()) {
-            if(getPlayer() == Player.WHITE && move.verticalDistance() == 1 || getPlayer() == Player.BLACK && move.verticalDistance() == - 1) {
+            if(getPlayer() == Player.WHITE && move.verticalDistance() == 1 || getPlayer() == Player.BLACK && move.verticalDistance() == -1) {
                 return true;
             } else if(player == Player.WHITE && move.isOnRow(2) && move.verticalDistance() == 2) { // if move by 2 at the first move
                 return true;
             } else if(player == Player.BLACK && move.isOnRow(7) && move.verticalDistance() == -2) { // if move by 2 at the first move
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
+
+    @Override
+    public boolean canTake(Take move) {
+        if(move.horizontalDistance() == 1 || move.horizontalDistance() == -1) {
+            if(getPlayer() == Player.WHITE && move.verticalDistance() == 1 || getPlayer() == Player.BLACK && move.verticalDistance() == -1) {
                 return true;
             } else {
                 return false;
