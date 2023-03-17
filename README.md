@@ -8,7 +8,7 @@ JChess contains one module, `jchess.engine`: it's a chess engine. It includes ma
 
 ## API
 
-Just take a look in the [documentation]("doc/index.md").
+Just take a look in the [documentation](doc/index.md).
 
 ## Dependencies
 
