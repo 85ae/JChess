@@ -4,9 +4,11 @@ JChess is a chess engine.
 
 ## Presentation
 
-JChess contains one module:
+JChess contains one module, `jchess.engine`: it's a chess engine. It includes many backend features and provides a simple API.
 
- > `jchess.engine`: this is a chess engine. It includes many backend features and provides a simple API.
+## API
+
+Just take a look in the [documentation]("doc/index.md").
 
 ## Dependencies
 

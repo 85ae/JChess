@@ -36,7 +36,7 @@ public class Chess {
 
     /**
      * Makes a move.
-     * @param move The move to do.
+     * @param moves the move to do.
      */
     public void move(String... moves) {
         board.move(moves);

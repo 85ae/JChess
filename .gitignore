@@ -2,7 +2,8 @@
 .vscode/
 
 # Construction
-build/build*
+build/build*/
+doc/build/
 
 # Fichiers personnels
 TODO

@@ -1,8 +1,5 @@
 package jchess.engine.chess;
 
-import java.util.Arrays;
-import java.util.Collections;
-
 import jchess.engine.board.*;
 import jchess.engine.parser.MoveParser;
 
@@ -19,7 +16,7 @@ public class ChessBoard {
     }
 
     /** Get a piece.
-     * @param position The postion where the piece is.
+     * @param position the postion where the piece is.
      * @return The piece situated here.
      */
     public ChessPiece getPiece(String position) {
@@ -34,7 +31,7 @@ public class ChessBoard {
     }
 
     /** Move (a) piece(s) if possible.
-     * @param moves The move(s) to do.
+     * @param moves the move(s) to do.
      */
     public void move(String... moves) {
         for(String move : moves) {
