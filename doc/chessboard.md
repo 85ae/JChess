@@ -24,14 +24,14 @@ Initialize the board with the default board (rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/
 
 ## Methods
 
- - [getPiece](#getPiece)
- - [getPlayer](#getPlayer)
+ - [getPiece](#get_piece)
+ - [getPlayer](#get_player)
  - [move](#move)
  - [undo](#undo)
- - [getHistory](#getHistory)
- - [toString](#toString)
+ - [getHistory](#get_history)
+ - [toString](#to_string)
 
-### getPiece <span id="getPiece" />
+### getPiece <span id="get_piece" />
 
 ```java
 public ChessPiece getPiece(String position)
@@ -51,7 +51,7 @@ The piece situated here.
 
 ------------------------------------------------
 
-### getPlayer <span id="getPlayer" />
+### getPlayer <span id="get_player" />
 
 ```java
 public char getPlayer()
@@ -89,7 +89,7 @@ Undo the last move.
 
 ------------------------------------------------
 
-### getHistory <span id="getHistory" />
+### getHistory <span id="get_history" />
 
 ```java
 public String[] getHistory()
@@ -103,7 +103,7 @@ The history.
 
 ------------------------------------------------
 
-### toString <span id="toString" />
+### toString <span id="to_string" />
 
 ```java
 public String toString()

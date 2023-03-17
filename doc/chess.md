@@ -23,13 +23,13 @@ Default constructor.
 
 ## Methods
 
- - [getBoard](#getBoard)
- - [getPlayer](#getPlayer)
+ - [getBoard](#get_board)
+ - [getPlayer](#get_player)
  - [undo](#undo)
  - [move](#move)
- - [toString](#toString)
+ - [toString](#to_string)
 
-### getBoard <span id="getBoard" />
+### getBoard <span id="get_board" />
 
 ```java
 public ChessBoard getBoard()
@@ -43,7 +43,7 @@ The board.
 
 ---------------------------------------------
 
-### getPlayer <span id="getPlayer" />
+### getPlayer <span id="get_player" />
 
 ```java
 public char getPlayer()
@@ -81,7 +81,7 @@ Makes a move.
 
 ---------------------------------------------
 
-### toString <span id="toString" />
+### toString <span id="to_string" />
 
 ```java
 @Override
