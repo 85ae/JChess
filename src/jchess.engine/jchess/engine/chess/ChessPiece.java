@@ -16,9 +16,9 @@ public class ChessPiece {
     }
 
     /** Main constructor.
-     * @param piece The piece symbol ('k' for king, 'p' for pawn...).
-     * @param position The position of the piece.
-     * @param player The player ('w' or 'b', ' ' for none).
+     * @param piece the piece symbol ('k' for king, 'p' for pawn...).
+     * @param position the position of the piece.
+     * @param player the player ('w' or 'b', ' ' for none).
      */
     public ChessPiece(char piece, String position, char player) {
         try {
@@ -82,6 +82,7 @@ public class ChessPiece {
      * For example, it can be "Be4" for a white bishop situated in e4.
      * @return A printable string.
      */
+    @Override
     public String toString() {
         return Character.toString(getSymbol()) + getPosition();
     }

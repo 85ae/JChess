@@ -2,7 +2,7 @@
 
 ## Presentation
 
-Chess is the main API class.
+The main API class.
 It represents a chess game.
 
 ```java
@@ -18,8 +18,6 @@ public Chess()
 ```
 
 Default constructor.
-
----------------------------------------------
 
 ## Methods
 
@@ -77,7 +75,7 @@ Makes a move.
 
 #### Parameters
 
- - `move` - the move to do
+ * `move` - the move to do
 
 ---------------------------------------------
 

@@ -1,6 +1,6 @@
 # JChess
 
-JChess is a chess engine.
+JChess is a chess engine, entirely written in Java.
 
 ## Presentation
 

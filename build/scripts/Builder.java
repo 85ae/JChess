@@ -88,7 +88,7 @@ public class Builder {
                 Log.log(Log.FATALERROR, "Fakeroot directory wasn't created. The fakeroot directory must can be created to install correctly the files.");
             }
             // install in the fakeroot directory
-            FileManager.copy(filer.getBuildDir().getAbsolutePath() + FileManager.slash() + module, filer.getFakerootDir().getAbsolutePath() + options.prefix + FileManager.slash() + "lib" + FileManager.slash() + module);
+            FileManager.copy(filer.getBuildDir().getAbsolutePath() + FileManager.slash() + module, filer.getFakerootDir().getAbsolutePath() + filer.slash() + options.prefix + FileManager.slash() + "lib" + FileManager.slash() + module);
             Log.log(Log.LITLE, "Module " + module + " was copied in the fakeroot environment.");
 
             // Post-install operations

@@ -9,7 +9,7 @@ import jchess.engine.chess.Chess;
 public class Example {
     /**
      * The main method.
-     * @param args The arguments passed to the program.
+     * @param args the arguments passed to the program.
      */
     public static void main(String[] args) {
         // Create a Chess object.

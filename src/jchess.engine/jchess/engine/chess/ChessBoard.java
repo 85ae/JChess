@@ -3,7 +3,10 @@ package jchess.engine.chess;
 import jchess.engine.board.*;
 import jchess.engine.parser.MoveParser;
 
-/** This class represents a chess board. */
+/**
+ * This is a representation of a chess board.
+ * It contains advanced board management methods, getters and others.
+ */
 public class ChessBoard {
     private Board board;
 
@@ -16,7 +19,7 @@ public class ChessBoard {
     }
 
     /** Get a piece.
-     * @param position the postion where the piece is.
+     * @param position the postion where the piece is ("e4", "h2"...)
      * @return The piece situated here.
      */
     public ChessPiece getPiece(String position) {

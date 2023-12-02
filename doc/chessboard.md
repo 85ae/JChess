@@ -18,9 +18,8 @@ public ChessBoard()
 ```
 
 The default constructor.
-Initialize the board with the default board (rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR).
 
-------------------------------------------------
+Initialize the board with the default board (rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR).
 
 ## Methods
 
@@ -39,17 +38,15 @@ public ChessPiece getPiece(String position)
 
 Get a piece.
 
-------------------------------------------------
-
 #### Parameters
 
- - `position` - the postion where the piece is.
+ - `position` - the postion where the piece is ("e4", "h2"...)
 
 #### Return
 
 The piece situated here.
 
-------------------------------------------------
+---------------------------------------------
 
 ### getPlayer <span id="get_player" />
 
@@ -63,7 +60,7 @@ Get the player who plays.
 
 'w' for white or 'b' for black.
 
-------------------------------------------------
+---------------------------------------------
 
 ### move <span id="move" />
 
@@ -75,9 +72,9 @@ Move (a) piece(s) if possible.
 
 #### Parameters
 
- - `moves` - the move(s) to do.
+ * `moves` - the move(s) to do.
 
-------------------------------------------------
+---------------------------------------------
 
 ### undo <span id="undo" />
 
@@ -87,7 +84,7 @@ public void undo()
 
 Undo the last move.
 
-------------------------------------------------
+---------------------------------------------
 
 ### getHistory <span id="get_history" />
 
@@ -101,7 +98,7 @@ Return the history.
 
 The history.
 
-------------------------------------------------
+---------------------------------------------
 
 ### toString <span id="to_string" />
 
