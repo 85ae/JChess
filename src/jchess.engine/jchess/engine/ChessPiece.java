@@ -1,4 +1,4 @@
-package jchess.engine.chess;
+package jchess.engine;
 
 import jchess.engine.board.Player;
 import jchess.engine.board.Position;
@@ -49,7 +49,8 @@ public class ChessPiece {
      * @return The position (like "e4").
      */
     public String getPosition() {
-        return piece.getPosition().toString();
+        Position pos = piece.getPosition();
+        return Character.toString(pos.column() + 'a') + Integer.toString(pos.row() + 1);
     }
 
     /** Get the piece owner.

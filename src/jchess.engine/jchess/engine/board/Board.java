@@ -73,7 +73,7 @@ public class Board {
      * @return A reference to this piece.
      */
     public Piece getPiece(Position pos) {
-        return board[pos.getRow()][pos.getColumn()];
+        return board[pos.row()][pos.column()];
     }
 
     /**
@@ -82,7 +82,7 @@ public class Board {
      * @param piece A reference to the piece which will be assigned to this position.
      */
     public void setPiece(Position pos, Piece piece) {
-        board[pos.getRow()][pos.getColumn()] = piece;
+        board[pos.row()][pos.column()] = piece;
         piece.setPos(pos);
     }
 
@@ -265,11 +265,11 @@ public class Board {
                         return getPiece(pos);
                     }
                 }
-                pos.incrementColumn();
-            } while(pos.getColumn() < 7);
-            pos.setColumn('a');
-            pos.incrementRow();
-        } while(pos.getRow() < 7);
+                pos = Position.incrementColumn(pos);
+            } while(pos.column() < 7);
+            pos = new Position(pos.row(), 0 /* a */);
+            pos = Position.incrementRow(pos);
+        } while(pos.row() < 7);
 
         return null;
     }
@@ -290,11 +290,11 @@ public class Board {
                         return getPiece(pos);
                     }
                 }
-                pos.incrementColumn();
-            } while(pos.getColumn() < 7);
-            pos.setColumn('a');
-            pos.incrementRow();
-        } while(pos.getRow() < 7);
+                pos = Position.incrementColumn(pos);
+            } while(pos.column() < 7);
+            pos = new Position(pos.row(), 0 /* a */);
+            pos = Position.incrementRow(pos);
+        } while(pos.row() < 7);
 
         return null;
     }
@@ -317,8 +317,8 @@ public class Board {
                     break;
                 }
             }
-            pos.incrementRow();
-        } while(pos.getRow() < 7);
+            pos = Position.incrementRow(pos);
+        } while(pos.row() < 7);
 
         return piece;
     }
@@ -341,8 +341,8 @@ public class Board {
                     break;
                 }
             }
-            pos.incrementRow();
-        } while(pos.getRow() < 7);
+            pos = Position.incrementRow(pos);
+        } while(pos.row() < 7);
 
         return piece;
     }
@@ -365,8 +365,8 @@ public class Board {
                     break;
                 }
             }
-            pos.incrementColumn();
-        } while(pos.getColumn() < 7);
+            pos = Position.incrementColumn(pos);
+        } while(pos.column() < 7);
 
         return piece;
     }
@@ -389,8 +389,8 @@ public class Board {
                     break;
                 }
             }
-            pos.incrementColumn();
-        } while(pos.getColumn() < 7);
+            pos = Position.incrementColumn(pos);
+        } while(pos.column() < 7);
 
         return piece;
     }

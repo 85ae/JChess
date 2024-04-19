@@ -1,6 +1,6 @@
 package jchess.engine.examples;
 
-import jchess.engine.chess.Chess;
+import jchess.engine.Chess;
 
 /**
  * A sample program.

@@ -1,4 +1,4 @@
-package jchess.engine.chess;
+package jchess.engine;
 
 
 /**

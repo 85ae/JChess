@@ -1,4 +1,4 @@
-package jchess.engine.chess;
+package jchess.engine;
 
 import jchess.engine.board.*;
 import jchess.engine.parser.MoveParser;

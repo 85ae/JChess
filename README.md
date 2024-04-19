@@ -12,7 +12,7 @@ Just take a look in the [documentation](doc/index.md).
 
 ## Dependencies
 
-jdk >= 14
+jdk > 14 (or 14 with preview, for `records`)
 
 ## Build and install
 

@@ -92,14 +92,14 @@ public class Move {
      * @return This distance.
      */
     public int verticalDistance() {
-        return newPos.getRow() - oldPos.getRow();
+        return newPos.row() - oldPos.row();
     }
 
     /** Returns the horizontal distance of move.
      * @return This distance.
      */
     public int horizontalDistance() {
-        return newPos.getColumn() - oldPos.getColumn();
+        return newPos.column() - oldPos.column();
     }
 
     /** Verify if it's an horizontal line.
@@ -170,7 +170,7 @@ public class Move {
      * @return The result.
      */
     public boolean isOnRow(int x) {
-        return oldPos.getRow() == x - 1;
+        return oldPos.row() == x - 1;
     }
 
     /** Verify if the piece is on the x column.
@@ -178,7 +178,7 @@ public class Move {
      * @return The result.
      */
     public boolean isOnColumn(int x) {
-        return oldPos.getColumn() == x + 1;
+        return oldPos.column() == x + 1;
     }
 
     /** Returns the representation of a move.
