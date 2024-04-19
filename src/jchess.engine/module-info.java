@@ -8,6 +8,6 @@
  */
 module jchess.engine {
     requires java.base;
-    exports jchess.engine.chess;
+    exports jchess.engine;
     exports jchess.engine.examples;
 }
